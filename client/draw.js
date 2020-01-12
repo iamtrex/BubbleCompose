@@ -3,7 +3,7 @@
 Pts.namespace(window);
 let canvas = document.getElementById('whiteboard');
 
-let run = Pts.quickStart("#whiteboard", "#e2e6ef");
+let run = Pts.quickStart("#whiteboard", "#ffffff");
 const shape_radius = 30;
 const cusor_radius = 10;
 const cusor_colour = "rgba(0, 255, 0)";
