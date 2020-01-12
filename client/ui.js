@@ -25,6 +25,31 @@ function onShareButtonClick() {
   }, 3000);
 }
 
+function onOverlayShapeButtonClick(id) {
+  document.getElementsByClassName("ui active shape button")[0].classList.remove("active");
+  document.getElementById(id).classList.add("active");
+  user.shape = id.split("-")[2];
+}
+
+function onOverlayColorButtonClick(id) {
+  document.getElementsByClassName("ui active color button")[0].classList.remove("active");
+  document.getElementById(id).classList.add("active");
+  user.colour = id.split("-")[2];
+}
+
+function onOverlaySoundButtonClick(id) {
+  document.getElementsByClassName("ui active sound button")[0].classList.remove("active");
+  document.getElementById(id).classList.add("active");
+  user.instrument = id.split("-")[2];
+}
+
+// Close the initial greeting screen and send data to server
+function closeStartScreen() {
+  document.getElementById("start-screen").style.height = "0%";
+  setClientVariables(user.name, user.instrument, user.shape, user.colour);
+  console.log(user);
+}
+
 // taken from https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f
 function copyToClipboard(str) {
   const el = document.createElement('textarea');  // Create a <textarea> element

@@ -92,6 +92,3 @@ function addNoteToSocket(note) {
     notes.push(note);
 }
 
-//TODO delete this - for unblocking before the welcome screen is done.
-// Invarient = this must be set before we can send a pattern.
-setClientVariables("Chonzo", "piano", "circle", "black");
