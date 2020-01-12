@@ -5,7 +5,20 @@ let notes = [];
 var socket = io();
 
 socket.on('newPattern', onPatternReceive);
+
 socket.on('newClient', onNewClientReceive);
+socket.on('updateNumClients', onUpdateNumClients);
+
+function onNewClientReceive(payload) {
+    clients.push(payload);
+}
+
+function onUpdateNumClients(payload){
+    // Bit hacky and sorta in the wrong place but w/e :)
+    document.getElementById('user-count').innerHTML = "Users online: " + payload.toString();
+}
+
+
 socket.on('registerAllData', onInitialDataReceived);
 socket.on('registerId', (id) => {
     console.log("Registering our Id");
@@ -13,7 +26,9 @@ socket.on('registerId', (id) => {
 });
 
 function onInitialDataReceived(payload) {
-    onClientsReceived(payload.clients);
+    onUpdateNumClients(payload.numClients);
+
+    clients = payload.clients;
 
     for (let pattern of payload.patterns) {
         onPatternReceive(pattern);
@@ -31,10 +46,10 @@ function onPatternReceive(payload) {
     }
 
     console.log("pattern", payload);
-    sendPatternToAudio(client, payload);
+    sendPatternToAudio(client, payload, false);
 }
 
-function sendPatternToAudio(client, payload) {
+function sendPatternToAudio(client, payload, isSelf) {
     let melody = patternToMelody(client, payload);
     if (!melody) {
         console.error("Melody is dead");
@@ -42,7 +57,7 @@ function sendPatternToAudio(client, payload) {
     }
 
     console.log("melody: ", melody);
-    addMelody(melody);
+    addMelody(melody, isSelf);
 }
 
 // TODO actually call this function so shit is setup!
@@ -68,7 +83,7 @@ function sendPattern() {
     socket.emit('newPattern', pattern);
 
     // Also send locally
-    sendPatternToAudio(findClientFromId(clients, myClientId), pattern);
+    sendPatternToAudio(findClientFromId(clients, myClientId), pattern, true);
 
     notes = [];
 }

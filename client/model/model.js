@@ -8,11 +8,3 @@ let user = {
   colour: 'black'
 };
 
-function onClientsReceived(payload) {
-    clients = payload;
-}
-
-function onNewClientReceive(payload) {
-    let client = payload;
-    clients.push(client);
-}
