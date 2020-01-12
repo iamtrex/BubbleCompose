@@ -124,4 +124,16 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
+
+  // Animation Loop - Do we want this?
+  function loop(timestamp) {
+      let progress = timestamp - lastRender;
+
+      // TODO do drawing here?
+
+      lastRender = timestamp;
+      window.requestAnimationFrame(loop);
+  }
+  let lastRender = 0;
+  window.requestAnimationFrame(loop);
 })();

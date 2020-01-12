@@ -10,10 +10,12 @@ app.use(express.static(__dirname + './../client'));
 let allPatterns = [];
 
 function onConnection(socket){
-
-  socket.on('drawing', (data) => socket.broadcast.emit('drawing', data)); // TODO delete
-
   console.log("There is new connection to ", socket.id);
+
+  // Send all patterns
+  socket.emit('registerAllPatterns', allPatterns);
+
+  socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
 
   // Forward new client to all clients with registered id.
   socket.on('newClient', (data) => {
