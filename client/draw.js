@@ -19,6 +19,8 @@ function drawShape(tone) {
     let y = tone.y / 100 * canvas.height;
     let color = tone.colour;
     let colorObj = Color.fromHex(tone.colour);
+    colorObj.alpha = 0.8;
+    color = colorObj.toString();
 
     let tempo = new Tempo(1440);
     let directionSeed = Math.random();
