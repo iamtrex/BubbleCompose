@@ -27,11 +27,9 @@ function addMelody(melody, isClientSide = false) {
             let freq = noteToFreq(note.pitch);
             console.log("Playing " + note.pitch + ", " + freq);
             piano.triggerAttackRelease(freq, "8n", offset);
-            if (!isClientSide) {
-                Tone.Draw.schedule(() => {
-                    drawShape(note);
-                });
-            }
+            Tone.Draw.schedule(() => {
+                drawShape(note);
+            }, offset);
             offset += EIGHTH;
         }
     });
