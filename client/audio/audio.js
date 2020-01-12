@@ -119,6 +119,7 @@ let instruments = {
     }).connect(reverb)
 };
 Tone.Transport.bpm = BPM;
+instruments.flute.volume.value = 8;
 console.log("Starting transport");
 Tone.Transport.start();
 
