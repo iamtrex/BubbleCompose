@@ -2,6 +2,13 @@ let clients = [];
 let patterns = [];
 let myClientId;
 
+let user = {
+  name: '',
+  instrument: '',
+  shape: '',
+  colour: 'black'
+};
+
 function onPatternsReceived(payload) {
     for (let pattern of payload) {
         onPatternReceive(pattern);

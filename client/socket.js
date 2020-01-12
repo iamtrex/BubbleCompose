@@ -1,13 +1,6 @@
 const TROTTLE_DELAY = 250;
 // Properties of the current user
 
-let user = {
-    name: '',
-    instrument: '',
-    shape: '',
-    colour: 'black'
-};
-
 let notes = [];
 var socket = io();
 
