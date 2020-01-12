@@ -12,6 +12,31 @@ socket.on('registerId', (id) => {
     myClientId = id;
 });
 
+function onPatternsReceived(payload) {
+    for (let pattern of payload) {
+        onPatternReceive(pattern);
+    }
+}
+
+function onPatternReceive(payload) {
+
+    let client = findClientFromId(clients, payload.clientId);
+
+    if (!client) {
+        console.error("Cannot find client for pattern", payload);
+        return null;
+    } else {
+        console.log("Received some shit from client ", client.id);
+    }
+
+    let melody = patternToMelody(client, payload);
+    if (!melody) {
+        console.error("Melody dead");
+        return;
+    }
+    addMelody(melody);
+}
+
 // TODO actually call this function so shit is setup!
 function setClientVariables(name, instrument, shape, colour) {
     user.name = name;
@@ -40,3 +65,6 @@ function addNote(x, y) {
     };
     notes.push(note);
 }
+
+//TODO delete this - for unblocking before the welcome screen is done
+setClientVariables("Chonzo", "piano", "circle", "black");

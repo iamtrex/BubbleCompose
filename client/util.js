@@ -6,13 +6,8 @@ const NUM_NOTES = (MAX_NOTE - MIN_NOTE) / SUM_INTERVAL * INTERVALS.length;
 
 
 // Convert pattern to a easier to manage form for Ben's code.
-function patternToMusic(pattern) {
-    let music = [];
-    let client = findClientFromId(clients, pattern.clientId);
-
-    if (!client) {
-        console.error("Cannot find client for pattern", pattern);
-    }
+function patternToMelody(client, pattern) {
+    let melody = [];
 
     for (let note of pattern.notes) {
         let tone = {
@@ -26,9 +21,9 @@ function patternToMusic(pattern) {
             t: note.t
         };
 
-        music.push(tone);
+        melody.push(tone);
     }
-    return music;
+    return melody;
 }
 
 function convertYToPitch(y) {
