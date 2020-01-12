@@ -54,27 +54,6 @@ function pause() {
     }
 }
 
-// TEST FUNCTIONS
-
-// play note immediately and trigger draw circle
-function testPlayNote() {
-    let note = {
-        pitch: "C4"
-    }
-    playNote(note);
-}
-
-function testNewMelody() {
-    let pitches = ["C4", "Eb4", "F4", "G4", "Bb4", "C5"];
-    let melodyLength = getRandomIntInclusive(4, 7);
-    let melody = []
-    for (let i=0; i < melodyLength; i++) {
-        melody.push({pitch: pitches[getRandomIntInclusive(0, 5)]});
-    }
-    addMelody(melody);
-    console.log(melody);
-}
-
 // PRIVATE FUNCTIONS
 function getRandomIntInclusive(min, max) { // credit to MDN
     min = Math.ceil(min);
