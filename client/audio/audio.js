@@ -46,49 +46,76 @@ let instruments = {
         "release" : 1,
         "baseUrl" : "./audio/samples/salamander/"
     }).connect(reverb),
-    "mandolin": new Tone.Sampler({
-        "A3" : "mandolin_A3_very-long_piano_normal.mp3",
-        "A4" : "mandolin_A4_very-long_piano_normal.mp3",
-        "A5" : "mandolin_A5_very-long_piano_normal.mp3",
-        "A6" : "mandolin_A6_very-long_piano_normal.mp3",
-        "A#3" : "mandolin_As3_very-long_piano_normal.mp3",
-        "A#4" : "mandolin_As4_very-long_piano_normal.mp3",
-        "A#5" : "mandolin_As5_very-long_piano_normal.mp3",
-        "B3" : "mandolin_B3_very-long_piano_normal.mp3",
-        "B4" : "mandolin_B4_very-long_piano_normal.mp3",
-        "B5" : "mandolin_B5_very-long_piano_normal.mp3",
-        "C4" : "mandolin_C4_very-long_piano_normal.mp3",
-        "C5" : "mandolin_C5_very-long_piano_normal.mp3",
-        "C6" : "mandolin_C6_very-long_piano_normal.mp3",
-        "C#4" : "mandolin_Cs4_very-long_piano_normal.mp3",
-        "C#5" : "mandolin_Cs5_very-long_piano_normal.mp3",
-        "C#6" : "mandolin_Cs6_very-long_piano_normal.mp3",
-        "D4" : "mandolin_D4_very-long_piano_normal.mp3",
-        "D5" : "mandolin_D5_very-long_piano_normal.mp3",
-        "D6" : "mandolin_D6_very-long_piano_normal.mp3",
-        "D#4" : "mandolin_Ds4_very-long_piano_normal.mp3",
-        "D#5" : "mandolin_Ds5_very-long_piano_normal.mp3",
-        "D#6" : "mandolin_Ds6_very-long_piano_normal.mp3",
-        "E4" : "mandolin_E4_very-long_piano_normal.mp3",
-        "E5" : "mandolin_E5_very-long_piano_normal.mp3",
-        "E6" : "mandolin_E6_very-long_piano_normal.mp3",
-        "F4" : "mandolin_F4_very-long_piano_normal.mp3",
-        "F5" : "mandolin_F5_very-long_piano_normal.mp3",
-        "F6" : "mandolin_F6_very-long_piano_normal.mp3",
-        "F#4" : "mandolin_Fs4_very-long_piano_normal.mp3",
-        "F#5" : "mandolin_Fs5_very-long_piano_normal.mp3",
-        "F#6" : "mandolin_Fs6_very-long_piano_normal.mp3",
-        "G3" : "mandolin_G3_very-long_piano_normal.mp3",
-        "G4" : "mandolin_G4_very-long_piano_normal.mp3",
-        "G5" : "mandolin_G5_very-long_piano_normal.mp3",
-        "G6" : "mandolin_G6_very-long_piano_normal.mp3",
-        "G#3" : "mandolin_Gs3_very-long_piano_normal.mp3",
-        "G#4" : "mandolin_Gs4_very-long_piano_normal.mp3",
-        "G#5" : "mandolin_Gs5_very-long_piano_normal.mp3",
-        "G#6" : "mandolin_Gs6_very-long_piano_normal.mp3"
+    violin: new Tone.Sampler({
+        "A#4" : "violin_As4_025_piano_pizz-normal.mp3",
+        "A#5" : "violin_As5_025_piano_pizz-normal.mp3",
+        "B4" : "violin_B4_025_piano_pizz-normal.mp3",
+        "B5" : "violin_B5_025_piano_pizz-normal.mp3",
+        "C5" : "violin_C5_025_piano_pizz-normal.mp3",
+        "C#4" : "violin_Cs4_025_piano_pizz-normal.mp3",
+        "C#5" : "violin_Cs5_025_piano_pizz-normal.mp3",
+        "C#6" : "violin_Cs6_025_piano_pizz-normal.mp3",
+        "D4" : "violin_D4_025_piano_pizz-normal.mp3",
+        "D6" : "violin_D6_025_piano_pizz-normal.mp3",
+        "D#5" : "violin_Ds5_025_piano_pizz-normal.mp3",
+        "E4" : "violin_E4_025_piano_pizz-normal.mp3",
+        "E5" : "violin_E5_025_piano_pizz-normal.mp3",
+        "F4" : "violin_F4_025_piano_pizz-normal.mp3",
+        "F#4" : "violin_Fs4_025_piano_pizz-normal.mp3",
+        "G3" : "violin_G3_025_piano_pizz-normal.mp3",
+        "G4" : "violin_G4_025_piano_pizz-normal.mp3",
+        "G6" : "violin_G6_025_piano_pizz-normal.mp3",
+        "G#3" : "violin_Gs3_025_piano_pizz-normal.mp3",
+        "G#5" : "violin_Gs5_025_piano_pizz-normal.mp3",
+        "G#6" : "violin_Gs6_025_piano_pizz-normal.mp3"
     }, {
         "release" : 1,
-        "baseUrl" : "./audio/samples/mandolin/"
+        "baseUrl" : "./audio/samples/violin/"        
+    }).connect(reverb),
+    flute: new Tone.Sampler({
+        "E6" : "flute_E6_15_piano_normal.mp3",
+        "A4" : "flute_A4_15_piano_normal.mp3",
+        "A5" : "flute_A5_15_piano_normal.mp3",
+        "A6" : "flute_A6_15_piano_normal.mp3",
+        "A#4" : "flute_As4_15_piano_normal.mp3",
+        "A#5" : "flute_As5_15_piano_normal.mp3",
+        "A#6" : "flute_As6_15_piano_normal.mp3",
+        "B4" : "flute_B4_15_piano_normal.mp3",
+        "B5" : "flute_B5_15_piano_normal.mp3",
+        "B6" : "flute_B6_15_piano_normal.mp3",
+        "C4" : "flute_C4_15_piano_normal.mp3",
+        "C5" : "flute_C5_15_piano_normal.mp3",
+        "C7" : "flute_C7_15_piano_normal.mp3",
+        "C#4" : "flute_Cs4_15_piano_normal.mp3",
+        "C#5" : "flute_Cs5_15_piano_normal.mp3",
+        "C#6" : "flute_Cs6_15_piano_normal.mp3",
+        "C#7" : "flute_Cs7_15_piano_normal.mp3",
+        "D4" : "flute_D4_15_piano_normal.mp3",
+        "D5" : "flute_D5_15_piano_normal.mp3",
+        "D6" : "flute_D6_15_piano_normal.mp3",
+        "D7" : "flute_D7_15_piano_normal.mp3",
+        "D#4" : "flute_Ds4_15_piano_normal.mp3",
+        "D#5" : "flute_Ds5_15_piano_normal.mp3",
+        "D#6" : "flute_Ds6_15_piano_normal.mp3",
+        "D#7" : "flute_Ds7_15_piano_normal.mp3",
+        "E4" : "flute_E4_15_piano_normal.mp3",
+        "E5" : "flute_E5_15_piano_normal.mp3",
+        "E7" : "flute_E7_15_piano_normal.mp3",
+        "F4" : "flute_F4_15_piano_normal.mp3",
+        "F5" : "flute_F5_15_piano_normal.mp3",
+        "F6" : "flute_F6_15_piano_normal.mp3",
+        "F#4" : "flute_Fs4_15_piano_normal.mp3",
+        "F#5" : "flute_Fs5_15_piano_normal.mp3",
+        "F#6" : "flute_Fs6_15_piano_normal.mp3",
+        "G4" : "flute_G4_15_piano_normal.mp3",
+        "G5" : "flute_G5_15_piano_normal.mp3",
+        "G6" : "flute_G6_15_piano_normal.mp3",
+        "G#4" : "flute_Gs4_15_piano_normal.mp3",
+        "G#5" : "flute_Gs5_15_piano_normal.mp3",
+        "G#6" : "flute_Gs6_15_piano_normal.mp3"
+    }, {
+        "release" : 1,
+        "baseUrl" : "./audio/samples/flute/"        
     }).connect(reverb)
 };
 Tone.Transport.bpm = BPM;
@@ -110,6 +137,9 @@ function playNote(note) {
 
 // add new melody to be looped
 function addMelody(melody, isClientSide = false) {
+    if (!melody || melody.length === 0) {
+        return;
+    }
     Tone.start();
     let melodyObj = {
         melody: melody,
@@ -150,13 +180,14 @@ function addMelody(melody, isClientSide = false) {
     MELODIES.push(melodyObj);
 }
 
-function reset() {
-    Tone.Transport.stop();
-    for (let melody of MELODIES) {
-        melody.loop.stop();
-    }
-    MELODIES = [];
-}
+// function reset() {
+//     Tone.Transport.stop();
+//     for (let melody of MELODIES) {
+//         melody.loop.stop();
+//     }
+//     MELODIES = [];
+//     Tone.Transport.start();
+// }
 
 // MAGENTA
 async function getAlternate(melody1, melody2) {
@@ -189,8 +220,6 @@ function convertMelody(melody) {
 }
 
 function convertNoteSequence(seq, melody) {
-    // var assert = require("assert");
-    // assert(seq[0].notes.length === melody.length);
     let result = [];
     for (let i=0; i<melody.length; i++) {
         result[i] = JSON.parse(JSON.stringify(melody[i]));
