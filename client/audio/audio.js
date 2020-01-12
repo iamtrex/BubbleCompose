@@ -111,18 +111,32 @@ function playNote(note) {
 // add new melody to be looped
 function addMelody(melody, isClientSide = false) {
     Tone.start();
+    let melodyObj = {
+        melody: melody,
+    };
     let loop = new Tone.Loop((time) => {
-        let offset = time;
-        for (let note of melody) {
-            let pitch = note.pitch;
-            let freq = noteToFreq(pitch);
-            console.log("Playing " + pitch + ", " + freq);
-            instruments[note.instrument].triggerAttackRelease(freq, "8n", offset);
-            Tone.Draw.schedule(() => {
-                drawShape(note);
-            }, offset);
-            offset += EIGHTH;
+        let melodyPromise = Promise.resolve(melody);
+        if (melodyObj.index && melodyObj.index > 0 && Math.random() < 0.3) {
+            console.log("Interpolating");
+            melodyPromise = getAlternate(
+                MELODIES[melodyObj.index - 1].melody,
+                MELODIES[melodyObj.index].melody
+            );
         }
+
+        melodyPromise.then((melodyToPlay) => {
+            let offset = time;
+            for (let note of melodyToPlay) {
+                let pitch = note.pitch;
+                let freq = noteToFreq(pitch);
+                // console.log("Playing " + pitch + ", " + freq);
+                instruments[melody[0].instrument].triggerAttackRelease(freq, "8n", offset);
+                Tone.Draw.schedule(() => {
+                    drawShape(note);
+                }, offset);
+                offset += EIGHTH;
+            }
+        });
     });
     loop.interval = (EIGHTH * melody.length) + 2 + (Math.random() * EIGHTH);
     if (isClientSide) {
@@ -130,18 +144,62 @@ function addMelody(melody, isClientSide = false) {
     } else {
         loop.start();
     }
-    MELODIES.push({
-        melody: melody,
-        loop: loop 
-    });
+
+    melodyObj.loop = loop;
+    melodyObj.index = MELODIES.length;
+    MELODIES.push(melodyObj);
 }
 
-// MAGNETA VAE MORPHING
+function reset() {
+    Tone.Transport.stop();
+    for (let melody of MELODIES) {
+        melody.loop.stop();
+    }
+    MELODIES = [];
+}
 
+// MAGENTA
+async function getAlternate(melody1, melody2) {
+    let seq1 = convertMelody(melody1);
+    let seq2 = convertMelody(melody2);
+    seq1 = mm.sequences.quantizeNoteSequence(seq1, 4);
+    seq2 = mm.sequences.quantizeNoteSequence(seq2, 4);
+    let newSeq = await vae.interpolate(
+        [seq1, seq2],
+        1
+    );
+    return convertNoteSequence(newSeq, melody1);
+}
 
+function convertMelody(melody) {
+    let seq = {
+        notes: []
+    };
+    let startTime = 0.0;
+    for (let note of melody) {
+        seq.notes.push({
+            pitch: note.pitch,
+            startTime: startTime,
+            endTime: startTime + 0.5
+        })
+        startTime += 0.5;
+    }
+    seq.totalTime = startTime;
+    return seq;
+}
+
+function convertNoteSequence(seq, melody) {
+    // var assert = require("assert");
+    // assert(seq[0].notes.length === melody.length);
+    let result = [];
+    for (let i=0; i<melody.length; i++) {
+        result[i] = JSON.parse(JSON.stringify(melody[i]));
+        result[i].pitch = seq[0].notes[i].pitch;
+    }
+    return result;
+}
 
 // PRIVATE FUNCTIONS
-
 function getRandomIntInclusive(min, max) { // credit to MDN
     min = Math.ceil(min);
     max = Math.floor(max);

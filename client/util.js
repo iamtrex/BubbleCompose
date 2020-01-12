@@ -34,7 +34,7 @@ function patternToMelody(client, pattern) {
 function convertYToPitch(y) {
     let nthNote = Math.round((100.0 - y) / 100.0 * NUM_NOTES); // Map to note linearly.
 
-    let pitch = 34;
+    let pitch = 48;
     for (let i = 0; i < nthNote; i++) {
         pitch += INTERVALS[i % INTERVALS.length];
     }
