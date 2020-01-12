@@ -100,7 +100,6 @@ function onMouseMove(e) {
     recordNote();
 }
 
-var canvas = document.getElementById('whiteboard');
 canvas.addEventListener('mousedown', onMouseDown, false);
 canvas.addEventListener('mouseup', onMouseUp, false);
 canvas.addEventListener('mousemove', throttle(onMouseMove, 250), false);
