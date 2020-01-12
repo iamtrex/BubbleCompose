@@ -61,12 +61,7 @@ function sendPatternToAudio(client, payload, isSelf) {
 }
 
 // TODO actually call this function so shit is setup!
-function setClientVariables(name, instrument, shape, colour) {
-    user.name = name;
-    user.instrument = instrument;
-    user.shape = shape;
-    user.colour = colour;
-
+function setClientVariables() {
     socket.emit('newClient', user); // Broadcast to all models.
     // Server will call registerId with the updated Id.
 }

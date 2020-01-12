@@ -3,8 +3,8 @@ let myClientId;
 
 let user = {
   name: '',
-  instrument: '',
-  shape: '',
-  colour: 'black'
+  instrument: 'piano',
+  shape: 'circle',
+  colour: '#FF0000'
 };
 

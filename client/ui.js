@@ -34,7 +34,20 @@ function onOverlayShapeButtonClick(id) {
 function onOverlayColorButtonClick(id) {
   document.getElementsByClassName("ui active color button")[0].classList.remove("active");
   document.getElementById(id).classList.add("active");
-  user.colour = id.split("-")[2];
+
+  let hex = "#000000";
+  switch(id.split("-")[2]){
+      case 'red':
+          hex = "#FF0000";
+          break;
+      case 'green':
+          hex = "#00FF00";
+          break;
+      case 'blue':
+          hex = "#0000FF";
+          break;
+  }
+  user.colour = hex;
 }
 
 function onOverlaySoundButtonClick(id) {
@@ -80,8 +93,8 @@ function recordNote() {
     drawShape({
       x: scaledX,
       y: scaledY,
-      colour: "rgba(0, 255, 0, .3)",
-      shape: "circle"
+      colour: user.colour,
+      shape: user.shape
   });
     let note = {
         'x': scaledX,
@@ -106,7 +119,6 @@ canvas.addEventListener('mousemove', throttle(onMouseMove, 250), false);
 
 function onMouseDown(e) {
     mousedown = true;
-    recordNote();
 }
 
 function onMouseUp(e) {

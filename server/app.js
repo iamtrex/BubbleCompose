@@ -13,7 +13,7 @@ let numClients = 0;
 function onConnection(socket) {
     console.log("There is new connection to ", socket.id);
 
-    numClients ++;
+    numClients++;
     // Send all patterns and clients to new socket connectors
     socket.emit('registerAllData', {
         numClients: numClients,
@@ -50,10 +50,12 @@ function onConnection(socket) {
         let client = allClients.find((e) => {
             return e.id === socket.id
         });
-        client.online = false;
+        if (!client) {
+            client.online = false;
+            numClients--;
+            socket.broadcast.emit('updateNumClients', numClients);
 
-        numClients --;
-        socket.broadcast.emit('updateNumClients', numClients);
+        }
 
     });
 
