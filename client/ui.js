@@ -72,7 +72,6 @@ function onOverlaySoundButtonClick(id) {
 function closeStartScreen() {
   document.getElementById("start-screen").style.height = "0%";
   setClientVariables(user.name, user.instrument, user.shape, user.colour);
-  console.log(user);
 }
 
 // taken from https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f
@@ -97,7 +96,6 @@ function copyToClipboard(str) {
 };
 
 function recordNote() {
-    console.log("Recording note");
     let x = space.pointer.x;
     let y = space.pointer.y;
     let scaledX = Math.round(x / canvas.width * 10000.0) / 100.0;
@@ -132,7 +130,6 @@ function onMouseUp(e) {
     if (!mousedown) {
         return;
     }
-    recordNote();
     sendPattern();
     mousedown = false;
 }
