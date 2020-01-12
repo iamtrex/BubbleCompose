@@ -9,8 +9,8 @@ let BPM = 60;
 // play note immediately and trigger draw circle
 function playNote(note) {
     Tone.start();
-    console.log("Playing " + note.pitch);
     let freq = noteToFreq(note.pitch);
+    console.log("Playing " + note.pitch + ", " + freq);
     piano.triggerAttackRelease(freq);
     Tone.Draw.schedule(() => {
         drawShape(note);
@@ -18,14 +18,14 @@ function playNote(note) {
 }
 
 // add new melody to be looped
-function addMelody(melody) {
+function addMelody(melody, isClientSide = false) {
     Tone.start();
     let loop = new Tone.Loop((time) => {
         let offset = time;
         for (let note of melody) {
             let pitch = note.pitch;
-            console.log("Playing " + pitch);
             let freq = noteToFreq(note.pitch);
+            console.log("Playing " + note.pitch + ", " + freq);
             piano.triggerAttackRelease(freq, "8n", offset);
             Tone.Draw.schedule(() => {
                 drawShape(note);
@@ -34,7 +34,11 @@ function addMelody(melody) {
         }
     });
     loop.interval = (EIGHTH * melody.length) + 2 + (Math.random() * EIGHTH);
-    loop.start();
+    if (isClientSide) {
+        loop.start("+2");
+    } else {
+        loop.start();
+    }
     MELODIES.push({
         melody: melody,
         loop: loop 
