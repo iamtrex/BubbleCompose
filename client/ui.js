@@ -1,3 +1,6 @@
+Pts.namespace(window);
+let mousedown = false;
+
 function onVolumeButtonClick() {
   let className = document.getElementById("volume-button-icon").className;
   if (className === "volume up icon") {
@@ -43,18 +46,33 @@ function copyToClipboard(str) {
   }
 };
 
-Pts.namespace(window);
-let mousedown = false;
+function recordNote() {
+    console.log("Recording note");
+    let x = space.pointer.x;
+    let y = space.pointer.y;
+    drawShape({
+        x: x,
+        y: y,
+        colour: "rgba(0, 255, 0, .3)",
+        shape: "circle"
+    });
+    let scaledX = Math.round(x / canvas.width * 10000.0) / 100.0;
+    let scaledY = Math.round(y / canvas.height * 10000.0) / 100.0;
+    let note = {
+        'x': scaledX,
+        'y': scaledY,
+        't': Date.now()
+    };
+
+    addNoteToSocket(note);
+    createToneFromClientNote(findClientFromId(clients, myClientId), note);
+}
+
 function onMouseMove(e) {
     if (!mousedown) {
         return;
     }
-    let x = space.pointer.x;
-    let y = space.pointer.y;
-    space.add(() => form.point([x, y], 10, "circle"));
-    let scaledX = Math.round(x / canvas.width * 10000.0) / 100.0;
-    let scaledY = Math.round(y / canvas.height * 10000.0) / 100.0;
-    addNote(scaledX, scaledY);
+    recordNote();
 }
 
 var canvas = document.getElementById('whiteboard');
@@ -64,12 +82,14 @@ canvas.addEventListener('mousemove', throttle(onMouseMove, 250), false);
 
 function onMouseDown(e) {
     mousedown = true;
+    recordNote();
 }
 
 function onMouseUp(e) {
     if (!mousedown) {
         return;
     }
+    recordNote();
     sendPattern();
     mousedown = false;
 }
