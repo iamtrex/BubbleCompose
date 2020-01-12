@@ -1,6 +1,7 @@
 'use strict';
 
 Pts.namespace(window);
+var canvas = document.getElementById('whiteboard');
 
 let run = Pts.quickStart("#whiteboard", "#e2e6ef");
 const shape_radius = 30;
