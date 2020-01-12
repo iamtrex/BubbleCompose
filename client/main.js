@@ -27,6 +27,7 @@
   socket.on('newPattern', onPatternReceive);
   socket.on('newClient', onNewClientReceive);
   socket.on('registerAllPatterns', onPatternsReceived);
+  socket.on('registerAllClients', onClientsReceived);
   socket.on('registerId', (id) => {
     myClientId = id;
   });

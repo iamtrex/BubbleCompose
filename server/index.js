@@ -8,12 +8,14 @@ const port = process.env.PORT || 3000;
 app.use(express.static(__dirname + './../client'));
 
 let allPatterns = [];
+let allClients = [];
 
 function onConnection(socket){
   console.log("There is new connection to ", socket.id);
 
-  // Send all patterns
+  // Send all patterns and clients to new socket connectors
   socket.emit('registerAllPatterns', allPatterns);
+  socket.emit('registerAllClients', allClients);
 
   socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
 
@@ -22,6 +24,7 @@ function onConnection(socket){
     data.id = socket.id; // Append ID to payload.
     socket.emit('registerId', data.id); // Send back to requesting client.
     socket.broadcast.emit('newClient', data); // Send to all other clients.
+    allClients.push(data);
   });
 
   // Forward new pattern to all other clients.
