@@ -1,5 +1,6 @@
 let clients = [];
 let patterns = [];
+let myClientId;
 
 function onPatternsReceived(payload) {
     for (let pattern of payload) {
