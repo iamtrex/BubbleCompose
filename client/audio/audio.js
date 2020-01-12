@@ -1,5 +1,5 @@
 // GLOBALS
-let MELODIES = [];
+let MELODIES = []; // [ { melody, loop }, ... ]
 let EIGHTH = Tone.Time('4n').toSeconds();
 let PAUSED = false;
 let BPM = 60;
@@ -10,9 +10,9 @@ let BPM = 60;
 function playNote(note) {
     console.log("Playing " + note.pitch);
     piano.triggerAttackRelease(note.pitch);
-    // Tone.Draw(() => {
-    //     drawShape() // TODO - Add draw function here
-    // }); 
+    Tone.Draw(() => {
+        drawShape(note);
+    }); 
 }
 
 // add new melody to be looped
@@ -23,9 +23,9 @@ function addMelody(melody) {
             let pitch = note.pitch;
             console.log("Playing " + pitch);
             piano.triggerAttackRelease(pitch, "8n", offset);
-            // Tone.Draw(() => {
-            //     drawShape() // TODO - Add draw function here
-            // }); 
+            Tone.Draw(() => {
+                drawShape(note);
+            }); 
             offset += EIGHTH;
         }
     });
@@ -77,37 +77,6 @@ function getRandomIntInclusive(min, max) { // credit to MDN
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
   }
-
-// function getInstrument(name) {
-//     instruments = new Map([
-//         ["piano", piano]
-//     ]);
-
-//     return instruments[name];
-// }
-
-// function scheduleNotes() {
-    // for (let loop in LOOPS) {
-        // TODO
-    // }
-// }
-
-// let sequence = new Tone.Sequence(
-//     (time, note) => {
-//         piano.triggerAttack(note);
-//     },
-//     notes,
-//     "8n"
-//     );
-// sequence.start();
-
-// function playSequences() {
-//     let sequences = [
-//         ["C4", "Eb4", "F4", "G4", "Bb4", "C5"],
-//         ["Eb4", "Bb4", "C5", "F4", "C4", "G4"]
-//     ];
-//     sequences.forEach(playSequence);
-// }
 
 // AT LOAD
 

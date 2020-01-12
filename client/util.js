@@ -4,7 +4,6 @@ const INTERVALS = [3, 2, 2, 3, 2];
 const SUM_INTERVAL = 12;
 const NUM_NOTES = (MAX_NOTE - MIN_NOTE) / SUM_INTERVAL * INTERVALS.length;
 
-
 // Convert pattern to a easier to manage form for Ben's code.
 function patternToMelody(client, pattern) {
     let melody = [];
