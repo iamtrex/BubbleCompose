@@ -1,6 +1,7 @@
 'use strict';
 
 (function() {
+  const TROTTLE_DELAY = 250;
   // Properties of the current user
   let myClientId;
   let user = {
@@ -21,7 +22,7 @@
   canvas.addEventListener('mousedown', onMouseDown, false);
   canvas.addEventListener('mouseup', onMouseUp, false);
   canvas.addEventListener('mouseout', onMouseUp, false);
-  canvas.addEventListener('mousemove', throttle(onMouseMove, 10), false);
+  canvas.addEventListener('mousemove', throttle(onMouseMove, TROTTLE_DELAY), false);
 
   socket.on('drawing', onDrawingEvent);
   socket.on('newPattern', onPatternReceive);
