@@ -28,8 +28,11 @@ html, body {
 }
 
 #title {
-  margin-left: auto;
-  text-align: center;
+  position: absolute;
+  left: 40%;
+  right: 0;
+  top: 0;
+  bottom: 0;
   font-size: 50px;
   font-family: "Montserrat", sans-serif;
 }
@@ -41,4 +44,21 @@ html, body {
 #title-bar {
   position: relative;
   z-index: 1;
+}
+
+#share-button {
+  margin-left: 0px;
+  margin-right: 25px;
+}
+
+#volume-button {
+  margin-left: 0px;
+  margin-right: 25px;
+}
+
+#copy-message {
+  display: none;
+  margin-left: 0px;
+  margin-right: 25px;
+  font-family: "Montserrat", sans-serif;
 }

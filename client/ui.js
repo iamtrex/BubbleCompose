@@ -7,10 +7,19 @@ function onVolumeButtonClick() {
   }
 }
 
+let timeout = null;
 function onShareButtonClick() {
   let url = window.location.href;
   copyToClipboard(url);
-  console.log("Copied the text: " + url);
+
+  document.getElementById("copy-message").style.display = "flex";
+
+  if (timeout) {
+    window.clearTimeout(timeout);
+  }
+  timeout = setTimeout(function(){
+    document.getElementById("copy-message").style.display = "none";
+  }, 3000);
 }
 
 // taken from https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f
