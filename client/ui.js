@@ -65,7 +65,7 @@ function recordNote() {
     };
 
     addNoteToSocket(note);
-    createToneFromClientNote(findClientFromId(clients, myClientId), note);
+    playNote(createToneFromClientNote(findClientFromId(clients, myClientId), note));
 }
 
 function onMouseMove(e) {
