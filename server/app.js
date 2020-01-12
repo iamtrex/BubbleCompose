@@ -58,6 +58,17 @@ function onConnection(socket) {
 
     });
 
+    socket.on("reset", function() {
+        console.log("Resetting!");
+        allPatterns = [];
+        allClients = [];
+        numClients = 0;
+
+        socket.emit('refresh');
+        socket.broadcast.emit('refresh');
+
+    })
+
 }
 
 io.on('connection', onConnection);

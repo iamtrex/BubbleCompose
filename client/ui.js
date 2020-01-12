@@ -120,7 +120,7 @@ function onMouseMove(e) {
 
 canvas.addEventListener('mousedown', onMouseDown, false);
 canvas.addEventListener('mouseup', onMouseUp, false);
-canvas.addEventListener('mousemove', throttle(onMouseMove, 250), false);
+canvas.addEventListener('mousemove', throttle(onMouseMove, 500), false);
 
 function onMouseDown(e) {
     mousedown = true;

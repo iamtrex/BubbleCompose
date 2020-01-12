@@ -87,3 +87,10 @@ function addNoteToSocket(note) {
     notes.push(note);
 }
 
+
+socket.on('refresh', () => {
+    location.reload();
+});
+function myReset() {
+    socket.emit('reset', null);
+}
