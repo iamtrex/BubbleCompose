@@ -10,7 +10,7 @@ let BPM = 60;
 function playNote(note) {
     console.log("Playing " + note.pitch);
     piano.triggerAttackRelease(note.pitch);
-    Tone.Draw(() => {
+    Tone.Draw.schedule(() => {
         drawShape(note);
     }); 
 }
@@ -23,7 +23,7 @@ function addMelody(melody) {
             let pitch = note.pitch;
             console.log("Playing " + pitch);
             piano.triggerAttackRelease(pitch, "8n", offset);
-            Tone.Draw(() => {
+            Tone.Draw.schedule(() => {
                 drawShape(note);
             }); 
             offset += EIGHTH;
