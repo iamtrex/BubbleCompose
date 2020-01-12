@@ -50,12 +50,12 @@ function recordNote() {
     let scaledX = Math.round(x / canvas.width * 10000.0) / 100.0;
     let scaledY = Math.round(y / canvas.height * 10000.0) / 100.0;
     let note = {
-        'x': x,
-        'y': y,
+        'x': scaledX,
+        'y': scaledY,
         't': Date.now()
     };
 
-    addNoteToSocket(scaledX, scaledY);
+    addNoteToSocket(note);
     createToneFromClientNote(findClientFromId(clients, myClientId), note);
 }
 
