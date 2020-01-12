@@ -144,7 +144,7 @@ let piano = new Tone.Sampler({
     "C8" : "C8.[mp3|ogg]"
 }, {
     "release" : 1,
-    "baseUrl" : "./samples/salamander/"
+    "baseUrl" : "./audio/samples/salamander/"
 }).connect(reverb);
 reverb.generate();
 Tone.Transport.bpm = BPM;
