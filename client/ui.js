@@ -8,7 +8,7 @@ setTimeout(function(){
   document.getElementById("dimmer").style.display = "none";
 
   // set defaults for user
-  user.colour = "red";
+  user.colour = "#FF0000";
   user.shape = "circle";
   user.instrument = "piano";
 }, 2000);
