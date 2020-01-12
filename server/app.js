@@ -50,11 +50,10 @@ function onConnection(socket) {
         let client = allClients.find((e) => {
             return e.id === socket.id
         });
-        if (!client) {
+        if (client) {
             client.online = false;
             numClients--;
             socket.broadcast.emit('updateNumClients', numClients);
-
         }
 
     });
