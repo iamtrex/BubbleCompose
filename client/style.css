@@ -17,7 +17,7 @@ html, body {
  * Canvas
  */
 
-.whiteboard {
+#whiteboard {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -25,4 +25,20 @@ html, body {
   right: 0;
   bottom: 0;
   top: 0;
+}
+
+#title {
+  margin-left: auto;
+  text-align: center;
+  font-size: 50px;
+  font-family: "Montserrat", sans-serif;
+}
+
+#user-count {
+  font-family: "Montserrat", sans-serif;
+}
+
+#title-bar {
+  position: relative;
+  z-index: 1;
 }

@@ -4,13 +4,36 @@
   <meta charset="UTF-8">
   <title>Socket.IO whiteboard</title>
   <link rel="stylesheet" href="style.css">
-</head>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,900&display=swap"></head>
 <body>
-  <canvas class="whiteboard" ></canvas>
+  <div id="title-bar" class="ui borderless top attached menu">
+    <div class="left menu">
+      <div class="vertically fitted item">
+        <p id="user-count">Users online: 1</p>
+      </div>
+    </div>
+    <h1 id="title" class="ui header fitted item">
+      BubbleHub
+    </h1>
+    <div class="right menu">
+      <div class="vertically fitted item">
+        <button class="ui button"><i class="share alternate icon"></i></button>
+      </div>
+      <div class="vertically fitted item">
+        <button class="ui button" onclick="onVolumeButtonClick()"><i id="volume-button-icon" class="volume up icon"></i></button>
+      </div>
+    </div>
+  </div>
+  <canvas id="whiteboard"></canvas>
   <script src="/socket.io/socket.io.js"></script>
   <script src="./../util.js"></script>
   <script src="./../model/model.js"></script>
-  <script src="/main.js"></script>
+  <script src="/socket.js"></script>
+  <script src="/pts.min.js"></script>
+  <script src="/draw.js"></script>
   <script src="./../audio/audio.js"></script>
+  <script src="/ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 </body>
 </html>
