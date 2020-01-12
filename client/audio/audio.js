@@ -8,6 +8,7 @@ let BPM = 60;
 
 // play note immediately and trigger draw circle
 function playNote(note) {
+    Tone.start();
     console.log("Playing " + note.pitch);
     let freq = noteToFreq(note.pitch);
     piano.triggerAttackRelease(freq);
@@ -18,6 +19,7 @@ function playNote(note) {
 
 // add new melody to be looped
 function addMelody(melody) {
+    Tone.start();
     let loop = new Tone.Loop((time) => {
         let offset = time;
         for (let note of melody) {
