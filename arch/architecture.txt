@@ -66,7 +66,7 @@ In Server, the state is...
 
 
 Possible Logic to add
-	(NO) -> Actually we want it to be out of sync ~~~ X...Need to synchronize the add time with overall timeline to make sure it sorta makes sense when it repeats...X
+	(JK) -> Actually we want it to be out of sync ~~~ X...Need to synchronize the add time with overall timeline to make sure it sorta makes sense when it repeats...X
 	* Fading out of old pieces (lower volume, until faded out)
 	
 	
