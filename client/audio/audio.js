@@ -17,7 +17,7 @@ function playNote(note) {
 
 // add new melody to be looped
 function addMelody(melody) {
-    melody.loop = new Tone.Loop((time) => {
+    let loop = new Tone.Loop((time) => {
         let offset = time;
         for (let note of melody) {
             let pitch = note.pitch;
@@ -29,9 +29,12 @@ function addMelody(melody) {
             offset += EIGHTH;
         }
     });
-    melody.loop.interval = (EIGHTH * melody.length) + 2 + (Math.random() * EIGHTH);
-    melody.loop.start();
-    MELODIES.push(melody);
+    loop.interval = (EIGHTH * melody.length) + 2 + (Math.random() * EIGHTH);
+    loop.start();
+    MELODIES.push({
+        melody: melody,
+        loop: loop 
+    });
 }
 
 // pause/resume playing
