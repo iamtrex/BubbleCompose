@@ -1,83 +1,108 @@
 // GLOBALS
-INTERVALS = [3, 2, 2, 3, 2];
-LOOPS = [];
+// const MIN_NOTE = 48;
+// const MAX_NOTE = 84;
+// let INTERVALS = [3, 2, 2, 3, 2];
+// let MELODIES = [];
+let eighth = Tone.Time('4n').toSeconds();
+let PAUSED = false;
 
 // DATA STRUCTURES
-class Point {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-}
+// class Point {
+//     constructor(x, y) {
+//         this.x = x;
+//         this.y = y;
+//     }
+// }
 
-class Shape {
-    constructor() {
-        this.client = 0;
-        this.instrument = "piano";
-        this.color = "color";
-        this.points = [];
-        this.notes = [];
-    }
-}
+// class Shape {
+//     constructor() {
+//         this.client = 0;
+//         this.instrument = "piano";
+//         this.color = "color";
+//         this.points = [];
+//         this.notes = [];
+//     }
+// }
 
 // PUBLIC FUNCTIONS
-function playNote(x, y, sound, color) {
-    pitch = getPitch(y);
-    piano.triggerAttack(note);
 
-    return [x, y, color];
+// play note immediately and trigger draw circle
+function playNote() {
+    console.log("Play note");
+    let note = {
+        pitch: "C4"
+    }
+    piano.triggerAttackRelease(note.pitch);
+    // Tone.Draw(draw(note)); // TODO - Add draw function here
 }
 
-function newMelody(response) {
-    // TODO
+function newMelody() {
+    console.log("New melody");
+    let melody = {
+        pitches: ["C4", "Eb4", "F4", "G4", "Bb4", "C5"]
+    }
+    melody.loop = new Tone.Loop((time) => {
+        let offset = time;
+        for (let pitch of melody.pitches) {
+            console.log(pitch, offset);
+            piano.triggerAttackRelease(pitch, "8n", offset);
+            offset += eighth;
+        }
+        // Tone.Draw(draw(note)); // TODO - Add draw function here
+    }, 7)
+    melody.loop.start();
+    // MELODIES.push(melody);
 }
 
 // PRIVATE FUNCTIONS
-function getInstrument(name) {
-    instruments = new Map([
-        ["piano", piano]
-    ]);
+// function getInstrument(name) {
+//     instruments = new Map([
+//         ["piano", piano]
+//     ]);
 
-    return instruments[name];
-}
+//     return instruments[name];
+// }
 
-function getPitch(y) {
-    // TODO - define grid using intervals
-    // y is a number between 0 and 100
-}
-
-function scheduleNotes() {
-    for (let loop in LOOPS) {
+// function scheduleNotes() {
+    // for (let loop in LOOPS) {
         // TODO
+    // }
+// }
+
+// let sequence = new Tone.Sequence(
+//     (time, note) => {
+//         piano.triggerAttack(note);
+//     },
+//     notes,
+//     "8n"
+//     );
+// sequence.start();
+
+// function playSequences() {
+//     let sequences = [
+//         ["C4", "Eb4", "F4", "G4", "Bb4", "C5"],
+//         ["Eb4", "Bb4", "C5", "F4", "C4", "G4"]
+//     ];
+//     sequences.forEach(playSequence);
+// }
+
+// pause/resume playing
+function pause() {
+    if (PAUSED) {
+        console.log("Starting transport");
+        Tone.Transport.start();
+        PAUSED = false;
+    } else {
+        console.log("Stopping transport");
+        Tone.Transport.pause();
+        PAUSED = true;
     }
 }
 
-function playSequences() {
-    let sequences = [
-        ["C4", "Eb4", "F4", "G4", "Bb4", "C5"],
-        ["Eb4", "Bb4", "C5", "F4", "C4", "G4"]
-    ];
-    sequences.forEach(playSequence);
-}
-
-function playSequence(notes) {
-    let sequence = new Tone.Sequence(
-        (time, note) => {
-            piano.triggerAttack(note);
-        },
-        notes,
-        "4n"
-        );
-    sequence.start();
-
-}
-
-function stop() {
-    Tone.Transport.stop();
-}
-
 // AT LOAD
-var piano = new Tone.Sampler({
+// let reverb = new Tone.Convolver('https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/icel.wav').toMaster();
+let reverb = new Tone.Reverb().toMaster();
+let piano = new Tone.Sampler({
     "A0" : "A0.[mp3|ogg]",
     "C1" : "C1.[mp3|ogg]",
     "D#1" : "Ds1.[mp3|ogg]",
@@ -111,5 +136,8 @@ var piano = new Tone.Sampler({
 }, {
     "release" : 1,
     "baseUrl" : "./samples/salamander/"
-}).toMaster();
+}).connect(reverb);
+reverb.generate();
+Tone.Transport.bpm = 60;
 Tone.Transport.start();
+console.log("Starting transport");
