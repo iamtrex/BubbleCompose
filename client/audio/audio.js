@@ -8,6 +8,7 @@ let BPM = 60;
 
 // play note immediately and trigger draw circle
 function playNote(note) {
+    Tone.start();
     console.log("Playing " + note.pitch);
     let freq = noteToFreq(note.pitch);
     piano.triggerAttackRelease(freq);
@@ -18,6 +19,7 @@ function playNote(note) {
 
 // add new melody to be looped
 function addMelody(melody) {
+    Tone.start();
     let loop = new Tone.Loop((time) => {
         let offset = time;
         for (let note of melody) {
@@ -50,27 +52,6 @@ function pause() {
         Tone.Transport.pause();
         PAUSED = true;
     }
-}
-
-// TEST FUNCTIONS
-
-// play note immediately and trigger draw circle
-function testPlayNote() {
-    let note = {
-        pitch: "C4"
-    }
-    playNote(note);
-}
-
-function testNewMelody() {
-    let pitches = ["C4", "Eb4", "F4", "G4", "Bb4", "C5"];
-    let melodyLength = getRandomIntInclusive(4, 7);
-    let melody = []
-    for (let i=0; i < melodyLength; i++) {
-        melody.push({pitch: pitches[getRandomIntInclusive(0, 5)]});
-    }
-    addMelody(melody);
-    console.log(melody);
 }
 
 // PRIVATE FUNCTIONS
