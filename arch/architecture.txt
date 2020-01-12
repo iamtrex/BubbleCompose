@@ -1,0 +1,74 @@
+BubbleHub.io
+
+All Payload Types
+	client: {
+		id: int,
+		instrument: string,
+		shape: string,
+		colour: string,
+	}
+
+	pattern: {
+		clientId: int,
+		[
+			notes ...
+		]
+	}
+
+	note: {
+		t: int (epoch time, ms),
+		x: float [0, 100], (mapped on % screen from lowest note to highest)
+		y: float [0, 100],
+	}
+	
+	onClientInitiallyLoaded: {
+		[
+			patterns ... 
+		]
+	}
+
+
+
+All APIs, Events, and Communication
+	UI -> Chonzo 
+		On board - send client
+			Server forwards client to all others, so client list is updated.  
+			Server forwards current patterns to the new client.
+		
+		On new User pattern - After finishing drawing (mouse up)
+			Send the entire pattern to Chonzo. 
+			Chonzo forward the pattern to all other Bens clients (or client filters it by its own Id... etc) (see Chozo->Ben)
+		
+		Reset (dev only) -> Resets chonzo and forwards reset to everyone else... basically wipe everything
+		
+	Chonzo -> Ben 
+		Add pattern -> 
+			The forwarding of the new pattern. 
+		Reset -> Server reset. 
+		
+	UI <-> Ben 
+		Live adding
+			as the user is drawing, immediately forward notes to Ben, so the note is immediately played (includes on note played event)
+		
+		On Note played
+			Forward drawing event to UI to draw the circle. 
+			
+
+In Ben and UI, the state is... 
+	Current client (either Id or actual client)
+	list of clients
+	list of patterns
+
+In Server, the state is...
+	list of sockets (handled by socketio)
+	list of patterns (synchronized with all systems)
+
+
+
+Possible Logic to add
+	(NO) -> Actually we want it to be out of sync ~~~ X...Need to synchronize the add time with overall timeline to make sure it sorta makes sense when it repeats...X
+	* Fading out of old pieces (lower volume, until faded out)
+	
+	
+	
+
