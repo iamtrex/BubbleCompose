@@ -13,8 +13,8 @@ run((time, ftime) => {
 });
 
 function drawShape(tone) {
-  let x = tone.x;
-  let y = tone.y;
+  let x = tone.x / 100 * canvas.width;
+  let y = tone.y / 100 * canvas.height;
   let colour = tone.colour;
   let shape = tone.shape;
   space.add(() => form.fill(colour).point([x, y], shape_radius, shape));
