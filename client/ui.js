@@ -1,6 +1,18 @@
 Pts.namespace(window);
 let mousedown = false;
 
+// at end of loading screen
+setTimeout(function(){
+  document.getElementById("loader").classList.add("disabled");
+  document.getElementById("dimmer").classList.add("disabled");
+  document.getElementById("dimmer").style.display = "none";
+
+  // set defaults for user
+  user.colour = "red";
+  user.shape = "circle";
+  user.instrument = "piano";
+}, 2000);
+
 function onVolumeButtonClick() {
   let className = document.getElementById("volume-button-icon").className;
   if (className === "volume up icon") {
