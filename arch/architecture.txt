@@ -1,4 +1,4 @@
-BubbleHub.io
+BubbleCompose.io
 
 All Payload Types
 	client: {
