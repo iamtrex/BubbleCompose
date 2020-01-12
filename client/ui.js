@@ -1,6 +1,18 @@
 Pts.namespace(window);
 let mousedown = false;
 
+// at end of loading screen
+setTimeout(function(){
+  document.getElementById("loader").classList.add("disabled");
+  document.getElementById("dimmer").classList.add("disabled");
+  document.getElementById("dimmer").style.display = "none";
+
+  // set defaults for user
+  user.colour = "#FF0000";
+  user.shape = "circle";
+  user.instrument = "piano";
+}, 2000);
+
 function onVolumeButtonClick() {
   let className = document.getElementById("volume-button-icon").className;
   if (className === "volume up icon") {
@@ -90,12 +102,7 @@ function recordNote() {
     let y = space.pointer.y;
     let scaledX = Math.round(x / canvas.width * 10000.0) / 100.0;
     let scaledY = Math.round(y / canvas.height * 10000.0) / 100.0;
-    drawShape({
-      x: scaledX,
-      y: scaledY,
-      colour: user.colour,
-      shape: user.shape
-  });
+
     let note = {
         'x': scaledX,
         'y': scaledY,
@@ -103,7 +110,7 @@ function recordNote() {
     };
 
     addNoteToSocket(note);
-    playNote(createToneFromClientNote(findClientFromId(clients, myClientId), note));
+    playNote(createToneFromClientNote(findClientFromId(clients, myClientId), note)); // Also draws note
 }
 
 function onMouseMove(e) {

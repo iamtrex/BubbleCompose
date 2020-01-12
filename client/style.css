@@ -117,3 +117,9 @@ html, body {
     right: 35px;
   }
 }
+
+/* The Overlay (background) */
+#loader {
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+}
