@@ -1,5 +1,5 @@
-
 /client/node_modules
+/client/audio/README.md
 /server/node_modules
 .DS_STORE
 .idea/
