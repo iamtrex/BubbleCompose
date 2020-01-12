@@ -3,6 +3,7 @@ BubbleHub.io
 All Payload Types
 	client: {
 		id: int,
+		name: string,
 		instrument: string,
 		shape: string,
 		colour: string,
