@@ -90,12 +90,7 @@ function recordNote() {
     let y = space.pointer.y;
     let scaledX = Math.round(x / canvas.width * 10000.0) / 100.0;
     let scaledY = Math.round(y / canvas.height * 10000.0) / 100.0;
-    drawShape({
-      x: scaledX,
-      y: scaledY,
-      colour: user.colour,
-      shape: user.shape
-  });
+
     let note = {
         'x': scaledX,
         'y': scaledY,
@@ -103,7 +98,7 @@ function recordNote() {
     };
 
     addNoteToSocket(note);
-    playNote(createToneFromClientNote(findClientFromId(clients, myClientId), note));
+    playNote(createToneFromClientNote(findClientFromId(clients, myClientId), note)); // Also draws note
 }
 
 function onMouseMove(e) {
