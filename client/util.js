@@ -1,3 +1,9 @@
+const MIN_NOTE = 48;
+const MAX_NOTE = 84;
+const INTERVALS = [3, 2, 2, 3, 2];
+const SUM_INTERVAL = 12;
+const NUM_NOTES = (MAX_NOTE - MIN_NOTE) / SUM_INTERVAL * INTERVALS.length;
+
 
 // Convert pattern to a easier to manage form for Ben's code.
 function patternToMusic(pattern) {
@@ -31,7 +37,14 @@ function patternToMusic(pattern) {
 }
 
 function convertYToPitch(y) {
-    // TODO
+    let nthNote = Math.round(y / 100 * NUM_NOTES); // Map to note linearly.
+
+    let pitch = 48;
+    for (let i = 0; i < nthNote; i++) {
+        pitch += INTERVALS[i % INTERVALS.length];
+    }
+
+    return pitch;
 }
 
 function findClientFromId(clients, id) {
