@@ -1,25 +1,44 @@
 # BubbleCompose
 
-## Inspiration
+Real-time collaborative canvas that generates an evolving musical landscape.
 
-Last year we built [MusicHub](https://devpost.com/software/musichub-3rajf4), with the goal of providing version control to composers to encourage a software-development-esque workflow. This year, we're elaborating on that further with BubbleCompose, an app that lets anyone and everyone collaborate on beautiful pieces of music with nothing more than a web browser and a mouse. Software development and music are both collaborative by nature, and BubbleCompose seeks to unify these two worlds using the power of machine learning.
+![Actual footage of BubbleCompose](https://thumbs.gfycat.com/DelayedIdealisticAsianelephant-size_restricted.gif)
 
-## What it does
+## About
 
-BubbleCompose allows multiple users to draw animated patterns on a shared canvas. These patterns are translated to melodies and played back to all collaborators as a combined piece of music. The melodies have a random chance to mutate and acquire the traits of other melodies. As a result, we enable the texture of the music to slowly develop in a musical way.
+BubbleCompose lets anyone collaborate on a beautiful piece of music with nothing more than a web browser and a mouse. You draw animated patterns on a shared canvas which is synced in real-time with other users. These patterns are translated to melodies and played back to all as a combined piece of music. The melodies have a random chance to mutate and acquire the traits of other melodies.
 
-## How we built it
+## Getting Started
 
-The front end is built with the Semantic UI framework for a beautiful user experience, the PTS.js library for drawing shapes and animations, and the Tone.js library for playing audio. Socket.io on Node.js allows us synchronize the music between all the users. The logic layer is built with Google Magenta's MusicVAE model to evolve the music notes over time and our own proprietary algorithm to translate user-drawn patterns into music notes. Finally, the web app is hosted on the Google Cloud Platform and our domain was acquired through Domain.com.
+To host your own instance of BubbleCompose:
 
-## Challenges we ran into
+1. Install Node.js.
+2. In the terminal, enter:
 
-PTS.js was a very difficult library to learn in such a short time frame. The documentation of Tone.js was confusing at times, resulting in a rough user experience. Finally, designing a clean and aesthetic UI is always a challenge, but we are happy with how this one turned out.
+```
+git clone https://github.com/iamtrex/BubbleCompose.git
+cd BubbleCompose
+node server/app.js
+```
 
-## Accomplishments that I'm proud of
+3. Go to [localhost:3000](localhost:3000) on your browser and start composing!
+4. Other computers in your network can join your canvas using your host computer's local IP address (for example: 192.168.1.32:3000).
+5. To clear the canvas, enter the following in the browser console:
 
-We're extremely proud of what we were able to accomplish in such a short time. In particular, it was our first time using Tone.js, PTS.js, Google Magenta and hosting a site on Google Cloud Platform.
+```
+myReset()
+```
 
-## What's next for BubbleCompose
+## Built With
 
-The next big feature we hope to implement is separate sessions so groups of friends can collaborate in a private setting. We would like to make the music more dynamic by triggering musical modulations as the number of active users passes set thresholds.
+* [PTS.js](https://ptsjs.org/) - To render the graphics
+* [Socket.io](https://socket.io/) - To sync client and server
+* [Tone.js](https://tonejs.github.io/) - To render the audio
+* [Magenta.js](https://magenta.tensorflow.org/get-started/#magenta-js) - To make the melodies evolve intelligently
+* [SemanticUI](https://semantic-ui.com/) - To make it look beautiful
+
+# Team
+
+| <img src="https://avatars2.githubusercontent.com/u/11649092?s=460&v=4" width="144" /> | <img src="https://avatars0.githubusercontent.com/u/38742521?s=460&v=4" width="144" /> | <img src="https://avatars1.githubusercontent.com/u/32021102?s=460&v=4" width="144" /> | <img src="https://avatars3.githubusercontent.com/u/32286298?s=460&v=4" width="144" /> |
+| --- | --- | --- | --- |
+| [Chauncey Liu](https://github.com/ChaunceyKiwi) | [James Zang](https://github.com/jameszang) | [Rex Lin](https://github.com/iamtrex) | [Benjamin Kwok](https://github.com/benkwokcy)
