@@ -17,8 +17,9 @@ To host your own instance of BubbleCompose:
 
 ```
 git clone https://github.com/iamtrex/BubbleCompose.git
-cd BubbleCompose
-node server/app.js
+cd BubbleCompose/server
+npm install
+node app.js
 ```
 
 3. Go to [localhost:3000](localhost:3000) on your browser and start composing!
