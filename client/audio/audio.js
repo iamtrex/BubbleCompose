@@ -181,15 +181,6 @@ function addMelody(melody, isClientSide = false) {
     MELODIES.push(melodyObj);
 }
 
-// function reset() {
-//     Tone.Transport.stop();
-//     for (let melody of MELODIES) {
-//         melody.loop.stop();
-//     }
-//     MELODIES = [];
-//     Tone.Transport.start();
-// }
-
 // MAGENTA
 async function getAlternate(melody1, melody2) {
     let seq1 = convertMelody(melody1);
