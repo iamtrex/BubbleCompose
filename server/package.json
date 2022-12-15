@@ -8,7 +8,7 @@
     "whiteboard"
   ],
   "dependencies": {
-    "express": "4.9.x",
+    "express": "4.17.x",
     "pts": "^0.8.11",
     "socket.io": "latest"
   },
